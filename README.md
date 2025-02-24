@@ -1,7 +1,7 @@
 # 📊 North_Wind_BI: Advanced Business Intelligence Dashboard
 
 <p align="center">
-  <img src="./logo.png" width="400" alt="North_Wind_BI Logo">
+  <img src="./north_wind.png" width="400" alt="North_Wind_BI Logo">
 </p>
 
 <div align="center">
