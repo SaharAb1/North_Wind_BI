@@ -1,0 +1,33 @@
+//TOP 5 CUSTOMERS
+EVALUATE
+TOPN(
+    5,
+    SUMMARIZECOLUMNS(
+        Customers[CustomerName],
+        "Total Revenue",  [Total Revenue]
+    ),
+    [Total Revenue],
+    DESC
+)
+//REVENUE Of Product Type
+EVALUATE
+SUMMARIZECOLUMNS(
+    Products[ProductType],
+    "Total Sales", [Total Revenue],
+    "Avg Price", AVERAGE(Products[AvgUnitPrice])
+)
+// Percentage Of Growth Between Current Year And The start
+EVALUATE
+VAR CurrentYearSalesQty = CALCULATE(SUM(Sales[RevenueQty]), 'Sales'[Year] = MAX(Sales[Year]))
+VAR LastYearSalesQty = CALCULATE(SUM(Sales[RevenueQty]), 'Sales'[Year] = MIN(Sales[Year]))
+VAR CurrentYearSalesRev = CALCULATE([Total Revenue], 'Sales'[Year] = MAX(Sales[Year]))
+VAR LastYearSalesRev = CALCULATE([Total Revenue], 'Sales'[Year] = MIN(Sales[Year]))
+RETURN
+ROW(
+    "Current Year Sales Qty", CurrentYearSalesQty,
+    "Start Year Sales Qty", LastYearSalesQty,
+    "GrowthQty %", DIVIDE(CurrentYearSalesQty - LastYearSalesQty, LastYearSalesQty, 0) * 100,
+	"Current Year Sales Rev", CurrentYearSalesRev,
+	"Start Year Sales Rev",LastYearSalesRev,
+	"GrowthRev %", DIVIDE(CurrentYearSalesRev - LastYearSalesRev, LastYearSalesRev, 0) * 100
+)
