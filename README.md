@@ -22,7 +22,6 @@
   <img src="./northwind_demo.gif" width="600" alt="North_Wind_BI Demo">
 </p>
 
-🔹 *Click the image above to watch a full demo!*
 
 ---
 
